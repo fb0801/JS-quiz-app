@@ -77,3 +77,25 @@ body.wrong{
     --hue: var(--hue-wrong);
 
 }
+
+.start-btn {
+
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px 20px;
+
+    
+}
+
+.next-btn{
+    @extend .start-btn;    
+}
+
+.controls{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hide{
+    display: none;
+}
