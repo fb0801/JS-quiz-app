@@ -78,4 +78,26 @@ body.wrong {
 .btn.wrong {
   --hue: var(--hue-wrong);
 }
+
+.start-btn, .next-btn {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 10px 20px;
+}
+
+.controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.hide {
+  display: none;
+}
 /*# sourceMappingURL=style.css.map */
