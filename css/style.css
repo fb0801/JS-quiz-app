@@ -72,6 +72,7 @@ body.wrong {
 
 .btn.correct {
   --hue: var(--hue-correct);
+  color: black;
 }
 
 .btn.wrong {
