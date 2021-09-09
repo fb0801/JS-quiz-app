@@ -1,10 +1,10 @@
 const startButton = document.getElementById('start-btn'); //use const as this btn wont change
 const questionContainerElement = document.getElementById('question-container');
-const shuffleQuestions, currentQuestionIndex;
+let shuffleQuestions, currentQuestionIndex;
 
 const questions = [
     {
-        question: "what is 2 + ", 
+        question: "what is 2 + 2", 
         answer: [
             {
                 text: '4', correct: true},
@@ -31,18 +31,37 @@ setNextQuestion()
 
 }
 
+function resetState(){
+    nextButton.classList.add('hide')
+    while (answerButtonsElement.firstChild){
+        answerButtonsElement.removeChild(answerButtonsElement.firstChild)
+    }
+}
 
 function setNextQuestion(){
     //give user the next question to answer
+resetState()//put everything back to default after a new question is given
+
 showQuestion(shuffleQuestions[currentQuestionIndex])
 
 }
 
 function showQuestion(question){
+    //show the question on the card and display the next question along with the options
 questionElement.innerText = question.question
+question.answer.forEach(answer => {
+    const button = document.createElement('button')
+    button.innerText = answer.text
+    button.classList.add('btn')
+    if (answer.correct){
+        button.dataset.correct = answer.correct
+    }
+        button.addEventListener('click', selectAnswer)
+        answerButtonsElement.appendChild(button)
+})
 }
 
-function selectAnswer(){
+function selectAnswer(e){
 //select the answer
 
 
