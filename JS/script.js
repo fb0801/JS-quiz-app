@@ -1,4 +1,6 @@
 const startButton = document.getElementById('start-btn'); //use const as this btn wont change
+const nextButton = document.getElementById('next-btn'); 
+
 const questionContainerElement = document.getElementById('question-container');
 let shuffleQuestions, currentQuestionIndex;
 
@@ -8,7 +10,29 @@ const questions = [
         answer: [
             {
                 text: '4', correct: true},
-                {text:'22', correct: false }
+                {text:'22', correct: false },
+                {text: '21', correct: false},
+                {text: 'what', correct: false}
+
+        ]
+    },
+    {
+        question: "what is 9 + 10", 
+        answer: [
+            {
+                text: '4', correct: false},
+                {text:'22', correct: false },
+                {text: '21', correct: true},
+                {text: "43", correct: false}
+        ]
+    },
+    {
+        question: "what is Python?", 
+        answer: [
+            {
+                text: 'web server', correct: false},
+                {text:'programming language', correct: true },
+                {text: 'snake', correct: false}
 
         ]
     }
@@ -16,18 +40,21 @@ const questions = [
 
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
+
+
 startButton.addEventListener('click', startGame)
+nextButton.addEventListener('click', () => {
+    currentQuestionIndex++
+    setNextQuestion()
+})
 
 function startGame(){
     //to start the game
-console.log('started');
 startButton.classList.add('hide');
 questionContainerElement.classList.remove('hide');
 shuffleQuestions = questions.sort(() => Math.random() - .5)
 currentQuestionIndex = 0
 setNextQuestion()
-
-
 
 }
 
@@ -63,6 +90,30 @@ question.answer.forEach(answer => {
 
 function selectAnswer(e){
 //select the answer
+const selectedButton = e.target
+const correct = selectedButton.dataset.correct
+setStatusClass(document.body, correct)
+array.from(answerButtonsElement.children).forEach(button => {
+    setStatusClass(button, button.dataset.correct)
+})
+    if(shuffleQuestions.length > currentQuestionIndex + 1){
+    nextButton.classList.remove('hide')//to show the next btn after selecting the answer
+}else{
+    startButton.innerText = "RESTART?"
+    startButton.classList.remove('hide')
+}
+}
 
+function setStatusClass(element, correct){
+clearStatusClass(element)
+if (correct){
+    element.classList.add('correct')
+} else {
+    element.classList.add('wrong')
+}
+}
 
+function clearStatusClass(element){
+    element.classList.remove('correct')
+    element.classList.remove('wrong')
 }
